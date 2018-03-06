@@ -1,19 +1,16 @@
 package com;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import org.apache.log4j.Logger;
 
 public class HandlePower implements Runnable {
+    private static final Logger log = Logger.getLogger(HandlePower.class.getName());
 
     private Boolean previousState = false;
     private Light light;
 
     public HandlePower(Light light) {
         this.light = light;
+        log.debug("Light added to light handler-" + light);
     }
 
     public void run() {
@@ -21,12 +18,12 @@ public class HandlePower implements Runnable {
 
             light.setOff();
             this.previousState = false;
-
+            log.debug(light + "-is Off");
         }else {
 
             light.setOn();
             this.previousState = true;
-
+            log.debug(light + "-is On");
         }
     }
 

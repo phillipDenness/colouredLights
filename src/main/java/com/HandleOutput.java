@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import org.apache.log4j.Logger;
 
 public class HandleOutput implements Runnable{
     private ArrayList<Light> lights;
@@ -11,6 +12,7 @@ public class HandleOutput implements Runnable{
     private Integer lightIndex = 0;
     private Long iterations = 0L;
     private Date date;
+    private static final Logger log = Logger.getLogger(HandleOutput.class.getName());
 
     HandleOutput(ArrayList<Light> lights) {
         this.lights = lights;
@@ -25,6 +27,7 @@ public class HandleOutput implements Runnable{
                 this.lightIndex = 0;
             }
         }
+        log.debug("Light Index: "+ lightIndex);
     }
 
     public void run() {
